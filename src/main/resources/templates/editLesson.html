@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Lesson</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f2f2f2;
+            font-family: Arial, sans-serif;
+        }
+
+        .form-container {
+            background: white;
+            padding: 30px 40px;
+            border-radius: 10px;
+            width: 380px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 26px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 12px;
+            display: block;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            border-radius: 6px;
+            border: 1px solid #aaa;
+        }
+
+        textarea {
+            height: 90px;
+            resize: none;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 12px;
+            background: #ffae00;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #d98f00;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="form-container">
+    <h1>Edit Lesson</h1>
+
+    <form th:action="@{/lessons/update/{id}(id=${lesson.id})}" method="post">
+        <div class="mb-3">
+            <label class="form-label">Title</label>
+            <input type="text" th:field="*{lesson.title}" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Description</label>
+            <textarea th:field="*{lesson.description}" class="form-control"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Publish Date</label>
+            <input type="date" th:field="*{lesson.publisherDate}" class="form-control" required>
+        </div>
+
+        <button type="submit" class="btn btn-warning">Update Lesson</button>
+        <a th:href="@{/courses/{id}/lessons(id=${lesson.course.id})}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+
+</body>
+</html>

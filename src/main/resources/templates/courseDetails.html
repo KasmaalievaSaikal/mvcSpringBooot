@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Course Details</title>
+    <style>
+        body { margin: 0; padding: 0; font-family: Arial, sans-serif;
+            background-image: url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1350&q=80");
+            background-size: cover; background-position: center; display: flex; justify-content: center; align-items: center; height: 100vh;}
+        .content-wrapper { width: 480px; max-width: 95%; padding: 25px 30px; background: rgba(255,255,255,0.95); border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.2); text-align: center;}
+        h1 { color: #222; margin-bottom: 25px; font-size: 1.8rem;}
+        .detail-block { background: rgba(255, 255, 255, 0.98); padding: 15px 18px; border-radius: 10px; margin-bottom: 20px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); text-align: left;}
+        .detail-block strong { color: #333;}
+        ul { margin: 0; padding-left: 20px;}
+        li { margin-bottom: 6px;}
+        a.back-btn, a.lessons-btn { display: inline-block; margin-top: 10px; padding: 10px 22px; background-color: #3498db; color: white; text-decoration: none; border-radius: 6px; transition: 0.3s; font-size: 14px;}
+        a.back-btn:hover, a.lessons-btn:hover { background-color: #217dbb;}
+        form { margin-top: 15px; }
+        form input[type="text"] { padding: 8px; width: 70%; margin-right: 10px; border-radius: 5px; border: 1px solid #ccc; }
+        form button { padding: 8px 16px; border: none; background-color: #3498db; color: white; border-radius: 5px; cursor: pointer; transition: 0.3s; }
+        form button:hover { background-color: #217dbb; }
+    </style>
+    <style>
+        .btn-lessons {
+            display: inline-block;
+            padding: 10px 24px;
+            background: linear-gradient(135deg, #4f7cff, #6aa9ff);
+            color: white !important;
+            border-radius: 10px;
+            font-size: 17px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.25s;
+            box-shadow: 0 4px 12px rgba(79, 124, 255, 0.3);
+        }
+        .btn-lessons:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(79, 124, 255, 0.45);
+        }
+    </style>
+</head>
+<body>
+
+<div class="content-wrapper">
+
+    <h1>Course Details</h1>
+
+    <div class="detail-block">
+        <p><strong>Title:</strong> <span th:text="${course.title}"></span></p>
+    </div>
+
+    <div class="detail-block">
+        <p><strong>Date Of Start:</strong> <span th:text="${course.dateOfStart}"></span></p>
+    </div>
+
+    <div class="detail-block">
+        <p><strong>Description:</strong> <span th:text="${course.description}"></span></p>
+    </div>
+
+    <div class="detail-block">
+        <a th:href="@{/courses/{courseId}/lessons(courseId=${course.id})}"
+           class="btn-lessons mt-3">
+            Lessons
+        </a>
+    </div>
+
+
+    <a href="/courses" class="back-btn">Back</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Course</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+
+            /* ---- ФОНОВОЕ ИЗОБРАЖЕНИЕ ---- */
+            background-image: url("https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1950&q=80");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+
+            /* затемнение фона (тёмный слой поверх картинки) */
+            position: relative;
+        }
+
+        /* слой затемнения */
+        body::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.45);
+            backdrop-filter: blur(2px);
+            z-index: 1;
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.92);
+            padding: 30px 40px;
+            border-radius: 10px;
+            width: 380px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 24px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 12px;
+            display: block;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            border-radius: 6px;
+            border: 1px solid #aaa;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 12px;
+            background: #007bff;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #005dc1;
+        }
+    </style>
+</head>
+
+<body>
+<div class="form-container">
+    <h2>Create Course</h2>
+    <form th:method="POST" th:action="@{save}" th:object="${newCourse}">
+
+        <label for="title">Title</label>
+        <input type="text" th:field="*{title}" id="title">
+
+        <label for="imageUrl">ImageUrl</label>
+        <input type="text" th:field="*{imageUrl}" id="imageUrl">
+
+        <label for="description">Description</label>
+        <input type="text" th:field="*{description}" id="description">
+
+        <label for="dateOfStart">DateOfStart</label>
+        <input type="text" th:field="*{dateOfStart}" id="dateOfStart">
+
+        <button type="submit">Save Course</button>
+    </form>
+</div>
+</body>
+</html>

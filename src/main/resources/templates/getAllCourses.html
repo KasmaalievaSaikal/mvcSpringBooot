@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Courses</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <style>
+        body {
+            background-image: url('https://images.unsplash.com/photo-1581091012184-3e8b9a9f5eaf?auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: Arial, sans-serif;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 230px;
+            background: white;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            border-right: 1px solid #eaeaea;
+            padding-top: 20px;
+        }
+
+        .sidebar .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding-left: 20px;
+            margin-bottom: 35px;
+        }
+
+        .sidebar .logo img {
+            height: 38px;
+        }
+
+        .menu-item {
+            padding: 15px 22px;
+            font-size: 20px !important;
+            color: #2a2a2a;
+            cursor: pointer;
+            transition: 0.2s;
+            border-left: 4px solid transparent;
+            display: block;
+            text-decoration: none;
+        }
+
+        .menu-item:hover,
+        .menu-item.active {
+            background: #f0f0f0;
+            border-left: 4px solid #2a7ff4;
+        }
+
+        /* TOPBAR */
+        .topbar {
+            margin-left: 230px;
+            height: 60px;
+            background: white;
+            border-bottom: 1px solid #eaeaea;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 0 25px;
+            gap: 25px;
+        }
+
+        .topbar i {
+            font-size: 1.6rem;
+            cursor: pointer;
+            color: #2a2a2a;
+        }
+
+        .topbar i:hover {
+            color: #0d6efd;
+        }
+
+        /* CONTENT */
+        .content {
+            margin-left: 230px;
+            padding: 30px;
+        }
+
+        /* COURSE CARD */
+        .course-card {
+            border-radius: 20px;
+            overflow: hidden;
+            background: rgba(255,255,255,0.95);
+            transition: 0.20s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            min-height: 350px;
+            position: relative;
+        }
+
+        .course-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+        }
+
+        .course-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
+        .course-body {
+            padding: 25px;
+            position: relative;
+            height: calc(100% - 150px);
+        }
+
+        .course-date {
+            font-size: 1.05rem !important;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #6c757d;
+            font-weight: 600;
+        }
+
+        .course-title {
+            font-size: 22px !important;
+            font-weight: 700;
+            margin-bottom: 10px;
+            margin-right: 60px;
+        }
+
+        .text-description {
+            font-size: 1rem !important;
+            margin-right: 60px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* DROPDOWN ACTIONS - RIGHT BOTTOM */
+        .actions.dropdown {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            width: auto;
+        }
+
+        .actions.dropdown .btn {
+            padding: 5px 8px;
+        }
+
+        .add-button {
+            font-size: 1.2rem !important;
+            padding: 10px 22px !important;
+        }
+
+        @media (min-width: 1200px) {
+            .col-md-3 {
+                flex: 0 0 25%;
+                max-width: 25%;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+<!-- LEFT MENU -->
+<div class="sidebar">
+    <div class="logo">
+        <img src="https://cdn-icons-png.flaticon.com/512/1048/1048953.png" alt="Logo">
+        <h4>LMS</h4>
+    </div>
+    <a class="menu-item active" href="/courses">All Courses</a>
+    <a class="menu-item" href="/instructors">All Instructors</a>
+    <a class="menu-item" href="/students">All Students</a>
+</div>
+
+<!-- TOP BAR -->
+<div class="topbar">
+    <i class="bi bi-globe2"></i>
+    <i class="bi bi-bell"></i>
+    <i class="bi bi-person-circle"></i>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold">All Courses</h2>
+        <a href="/courses/new" class="btn btn-primary add-button"> +Add Course</a>
+    </div>
+
+    <div class="row g-4">
+
+        <!-- COURSE CARD -->
+        <div class="col-md-3" th:each="course : ${allCourses}">
+            <div class="course-card">
+
+                <img th:src="@{${course.imageUrl}}" alt="Course Image" class="course-image">
+
+                <div class="course-body">
+
+                    <p class="course-date" th:text="${course.dateOfStart}"></p>
+                    <p class="course-title" th:text="${course.title}"></p>
+                    <p class="text-description" th:text="${course.description}"></p>
+                    <p class="text-dateOfStart" th:text="${course.dateOfStart}"></p>
+
+                    <!-- DROPDOWN ACTIONS -->
+                    <div class="actions dropdown">
+                        <button class="btn btn-sm btn-light p-1" type="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-three-dots-vertical"></i>
+                        </button>
+
+                        <ul class="dropdown-menu p-3">
+                            <li><a class="dropdown-item" th:href="@{|/courses/${course.id}|}">Detail</a></li>
+                            <li><a class="dropdown-item" th:href="@{|/courses/edit/${course.id}|}">Edit</a></li>
+                            <li><a class="dropdown-item" th:href="@{|/courses/delete/${course.id}|}">Delete</a></li>
+
+                            <!-- Assign Instructor Form -->
+                            <li>
+                                <form th:action="@{|/courses/${course.id}/assign-instructor|}" method="post">
+                                    <div class="mb-2">
+                                        <select class="form-select form-select-sm" name="instructorId" required>
+                                            <option value="" disabled selected>Select Instructor</option>
+                                            <option th:each="instructor : ${allInstructors}"
+                                                    th:value="${instructor.id}"
+                                                    th:text="${instructor.firstName + ' ' + instructor.lastName}">
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-success btn-sm w-100">Assign</button>
+                                </form>
+                            </li>
+
+
+                            <!-- Assign Student Form -->
+                            <li>
+                                <form th:action="@{|/courses/${course.id}/assign-student|}" method="post">
+                                    <div class="mb-2">
+                                        <select class="form-select form-select-sm" name="studentId" required>
+                                            <option value="" disabled selected>Select Student</option>
+                                            <option th:each="student : ${allStudents}"
+                                                    th:value="${student.id}"
+                                                    th:text="${student.firstName + ' ' + student.lastName}">
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-success btn-sm w-100">Assign</button>
+
+                                </form>
+
+                            </li>
+
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Instructor</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+
+            /* фон с изображением и затемнением */
+            background:
+                    linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)),
+                    url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1470&q=80') no-repeat center center;
+            background-size: cover;
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px 25px;
+            border-radius: 12px;
+            width: 380px;      /* увеличена ширина */
+            max-width: 90%;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .form-container:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 18px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+            color: #555;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 9px;
+            margin-top: 5px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            transition: border 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            border: 1.5px solid #ffae00;
+            outline: none;
+        }
+
+        textarea {
+            height: 70px;
+            resize: none;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 16px;
+            padding: 11px;
+            background: #ffae00;
+            border: none;
+            color: white;
+            font-size: 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        button:hover {
+            background: #d98f00;
+            transform: scale(1.02);
+        }
+
+        @media (max-width: 400px) {
+            .form-container {
+                padding: 20px 15px;
+                width: 90%;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+
+            input, textarea {
+                font-size: 13px;
+                padding: 7px;
+            }
+
+            button {
+                font-size: 14px;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="form-container">
+    <h1>Edit Instructor</h1>
+
+    <form th:action="@{'/instructors/' + ${instructor.id} + '/update'}" th:object="${instructor}" method="post">
+        <label for="firstName">FirstName:</label>
+        <input type="text" id="firstName" th:field="*{firstName}"/>
+
+        <label for="lastName">LastName:</label>
+        <input type="text" id="lastName" th:field="*{lastName}"/>
+
+        <label for="imageUrl">ImageUrl:</label>
+        <input type="text" id="imageUrl" th:field="*{imageUrl}"/>
+
+        <label for="email">Email:</label>
+        <input type="text" id="email" th:field="*{email}"/>
+
+        <label for="phoneNumber">PhoneNumber:</label>
+        <textarea id="phoneNumber" th:field="*{phoneNumber}"></textarea>
+
+        <button type="submit">Update</button>
+    </form>
+</div>
+
+</body>
+</html>

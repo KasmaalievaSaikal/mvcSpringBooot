@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Details</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+
+            /* Красивое фонового изображение */
+            background-image: url("https://pioneereducation.com.au/wp-content/uploads/2024/12/success.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* центрирование по вертикали */
+        }
+
+        /* Карточка */
+        .content-wrapper {
+            width: 400px;       /* уменьшенная ширина */
+            max-width: 90%;
+            padding: 20px 25px; /* немного меньше паддинга */
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        h1 {
+            color: #222;
+            margin-bottom: 20px; /* меньше отступ */
+            font-size: 1.8rem;
+        }
+
+        .detail-block {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 10px 15px; /* уменьшенный padding */
+            border-radius: 8px;
+            margin-bottom: 12px; /* меньше расстояния между блоками */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        .detail-block strong {
+            color: #444;
+        }
+
+        a.back-btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 20px;  /* чуть меньше кнопка */
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: 0.3s;
+            font-size: 14px;
+        }
+
+        a.back-btn:hover {
+            background-color: #217dbb;
+        }
+
+        @media (max-width: 500px) {
+            .content-wrapper {
+                width: 90%;
+                padding: 15px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="content-wrapper">
+
+    <h1>Student Details</h1>
+
+    <div class="detail-block">
+        <p><strong>First Name:</strong> <span th:text="${student.firstName}"></span></p>
+    </div>
+
+    <div class="detail-block">
+        <p><strong>Last Name:</strong> <span th:text="${student.lastName}"></span></p>
+    </div>
+
+    <div class="detail-block">
+        <p><strong>Image URL:</strong> <span th:text="${student.imageUrl}"></span></p>
+    </div>
+
+    <div class="detail-block">
+        <p><strong>Email:</strong> <span th:text="${student.email}"></span></p>
+    </div>
+
+    <div class="detail-block">
+        <p><strong>Phone Number:</strong> <span th:text="${student.phoneNumber}"></span></p>
+    </div>
+
+    <a href="/students" class="back-btn">Back</a>
+
+</div>
+
+</body>
+</html>

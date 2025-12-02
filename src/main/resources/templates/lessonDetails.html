@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson Details</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 40px 0;
+            font-family: Arial, sans-serif;
+
+            /* Фоновое изображение */
+            background-image: url("https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1950&q=80");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+
+            display: flex;
+            justify-content: center;
+        }
+
+        /* затемнение */
+        body::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(1.5px);
+            z-index: 1;
+        }
+
+        .content-wrapper {
+            width: 600px;
+            padding: 20px;
+            z-index: 2;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+        }
+
+        .detail-block {
+            background: rgba(255, 255, 255, 0.92);
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+        }
+
+        .detail-block strong {
+            color: #444;
+        }
+
+        a.back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 22px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: 0.3s;
+            font-size: 16px;
+        }
+
+        a.back-btn:hover {
+            background-color: #217dbb;
+        }
+    </style>
+</head>
+<body>
+
+<div class="content-wrapper">
+
+    <h1>Lesson Details</h1>
+
+    <div class="detail-block">
+        <p><strong>ID:</strong> <span th:text="${lesson.id}"></span></p>
+    </div>
+
+    <div class="detail-block">
+        <p><strong>Title:</strong> <span th:text="${lesson.title}"></span></p>
+    </div>
+
+    <div class="detail-block">
+        <p><strong>ImageUrl:</strong> <span th:text="${lesson.imageUrl}"></span></p>
+    </div>
+
+    <div class="detail-block">
+        <p><strong>PublisherDate:</strong> <span th:date="${lesson.publisherDate}"></span></p>
+    </div>
+
+    <div class="detail-block">
+        <p><strong>Description:</strong> <span th:text="${lesson.description}"></span></p>
+    </div>
+
+    <a href="/courses" class="back-btn">Back</a>
+
+</div>
+
+</body>
+</html>

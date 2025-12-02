@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Student</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+
+            /* Фоновое изображение */
+            background-image: url("https://www.billabonghighschool.com/blogs/wp-content/uploads/2024/01/15-Characteristics-a-Good-Student-Should-Have.webp");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 25px 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Плавающий эффект при наведении */
+        .form-container:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            color: #222;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 12px;
+            display: block;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            border-radius: 6px;
+            border: 1px solid #aaa;
+            font-size: 0.95rem;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 12px;
+            background: #007bff;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #005dc1;
+        }
+
+        @media (max-width: 500px) {
+            .form-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div class="form-container">
+    <h2>Create Student</h2>
+    <form th:method="POST" th:action="@{save}" th:object="${newStudent}">
+
+        <label for="firstName">FirstName</label>
+        <input type="text" th:field="*{firstName}" id="firstName">
+
+        <label for="lastName">LastName</label>
+        <input type="text" th:field="*{lastName}" id="lastName">
+
+        <label for="imageUrl">ImageUrl</label>
+        <input type="text" th:field="*{imageUrl}" id="imageUrl">
+
+        <label for="email">Email</label>
+        <input type="text" th:field="*{email}" id="email">
+
+        <label for="phoneNumber">PhoneNumber</label>
+        <input type="text" th:field="*{phoneNumber}" id="phoneNumber">
+
+        <button type="submit">Save Student</button>
+    </form>
+</div>
+</body>
+</html>
