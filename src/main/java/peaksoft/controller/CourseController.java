@@ -5,13 +5,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import peaksoft.entity.Course;
+import peaksoft.entity.Instructor;
 import peaksoft.entity.Lesson;
 import peaksoft.service.CourseService;
 import peaksoft.service.InstructorService;
 import peaksoft.service.LessonService;
 import peaksoft.service.StudentService;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -25,8 +28,19 @@ public class CourseController {
 
     @GetMapping
     public String getAllCourses(Model model) {
+        List<Course> courses = courseService.getAllCourses();
+
+        Map<Long, List<Instructor>> instructorsMap = new HashMap<>();
+
+        for (Course course : courses) {
+            instructorsMap.put(
+                    course.getId(),
+                    instructorService.getInstructorsNotAssignedToCourse(course.getId())
+            );
+        }
+
         model.addAttribute("allCourses", courseService.getAllCourses());
-        model.addAttribute("allInstructors", instructorService.getAllInstructorsWithoutCourse());
+        model.addAttribute("instructorsMap", instructorsMap);
         model.addAttribute("allStudents", studentService.getAllStudentsWithoutCourse());
         return "getAllCourses";
     }

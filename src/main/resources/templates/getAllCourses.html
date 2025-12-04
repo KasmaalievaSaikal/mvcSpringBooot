@@ -230,7 +230,11 @@
                                     <div class="mb-2">
                                         <select class="form-select form-select-sm" name="instructorId" required>
                                             <option value="" disabled selected>Select Instructor</option>
-                                            <option th:each="instructor : ${allInstructors}"
+<!--                                            <option th:each="instructor : ${allInstructors}"-->
+<!--                                                    th:value="${instructor.id}"-->
+<!--                                                    th:text="${instructor.firstName + ' ' + instructor.lastName}">-->
+<!--                                            </option>-->
+                                            <option th:each="instructor : ${instructorsMap[course.id]}"
                                                     th:value="${instructor.id}"
                                                     th:text="${instructor.firstName + ' ' + instructor.lastName}">
                                             </option>

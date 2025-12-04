@@ -18,5 +18,6 @@ public interface InstructorService {
 
     void assignInstructorToCourse(Long courseId, Long instructorId);
 
-    List<Instructor> getAllInstructorsWithoutCourse();
+//    List<Instructor> getAllInstructorsWithoutCourse();
+    List<Instructor> getInstructorsNotAssignedToCourse(Long courseId);
 }

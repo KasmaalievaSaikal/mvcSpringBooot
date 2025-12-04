@@ -71,8 +71,17 @@ public class InstructorServiceImpl implements InstructorService {
         course.getInstructors().add(instructor);
     }
 
+//    @Override
+//    public List<Instructor> getAllInstructorsWithoutCourse() {
+//        return instructorRepository.findInstructorsByCoursesIsNull();
+//    }
+
     @Override
-    public List<Instructor> getAllInstructorsWithoutCourse() {
-        return instructorRepository.findInstructorsByCoursesIsNull();
+    public List<Instructor> getInstructorsNotAssignedToCourse(Long courseId) {
+        Course course = courseRepository.findById(courseId)
+                .orElseThrow(() -> new NoSuchElementException("Course not found"));
+
+        return instructorRepository.findInstructorsNotAssignedToCourse(course);
     }
+
 }
